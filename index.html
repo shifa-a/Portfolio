@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shifa Muhammad — Full Stack Developer</title>
+
+  <style>
+    /* --- REVERTED COLOR PALETTE (Black BG, Pink Accent, Highlighted Cards) --- */
+    :root {
+        --bg: #000000; /* True Black Background */
+        --text: #ffffff;
+        --muted: #a8a8a8;
+        --accent: #ff4fa3; /* Vibrant Pink Accent */
+        
+        /* Dark Grey Card Background for HIGHLIGHTED sections */
+        --card: #161b22; 
+        /* Slightly lighter dark grey for items inside highlighted cards */
+        --project-bg: #1e242d; 
+        
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", Arial, sans-serif;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding-bottom: 40px;
+        scroll-snap-type: y mandatory;
+    }
+
+    /* --- FULL SCREEN SECTION STYLES (Kept for the 'pages' effect) --- */
+    .full-screen-section {
+        min-height: 100vh;
+        max-width: 100%;
+        margin: 0;
+        padding: 40px 20px;
+        background: var(--bg); 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        scroll-snap-align: start;
+    }
+
+    /* New style for the sections you want colored */
+    .highlight-content {
+        max-width: 850px;
+        width: 100%;
+        padding: 28px;
+        background: var(--card); /* Uses the Dark Grey/Blue background */
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+    }
+    
+    /* General content box (used for black background sections) */
+    .content-box {
+        max-width: 850px;
+        width: 100%;
+        padding: 28px;
+        /* Background is explicitly transparent/black */
+        background: transparent; 
+        border-radius: 12px;
+        box-shadow: none;
+    }
+
+
+    header {
+        text-align: center;
+        padding: 0;
+    }
+
+    header h1 {
+        font-size: 56px;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 5px;
+    }
+
+    header p {
+        color: var(--muted);
+        font-size: 20px;
+        margin-top: 8px;
+    }
+
+    #intro-section header {
+        margin-bottom: 20px;
+    }
+    
+    /* Navigation Link Style */
+    .nav-link {
+        color: var(--accent) !important;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+        color: var(--text) !important;
+        background-color: var(--accent);
+        border-radius: 4px;
+    }
+
+    /* --- NEW STYLES FOR CENTERING INTRO BUTTONS --- */
+    .intro-buttons-container {
+        margin-top: 20px; 
+        display: flex; 
+        gap: 12px;
+        /* Center content horizontally */
+        justify-content: center; 
+    }
+
+
+    /* --- PROJECT AND SKILLS STYLES --- */
+    /* .experience-item uses the same styling as .project */
+    .project, .experience-item { 
+        padding: 18px;
+        margin-bottom: 16px;
+        border-left: 4px solid var(--accent); 
+        /* Project background color is used inside ALL content boxes */
+        background: var(--project-bg); 
+        border-radius: 8px;
+        transition: transform 0.2s;
+    }
+    
+    .project:hover, .experience-item:hover {
+        transform: translateY(-3px); 
+        box-shadow: 0 4px 8px rgba(255, 79, 163, 0.15); 
+    }
+
+    .project strong, .experience-item strong {
+        color: var(--text);
+        font-size: 18px;
+    }
+    
+    .project p, .experience-item p {
+        color: var(--muted);
+    }
+    
+    /* Time/Duration styling */
+    .duration {
+        font-size: 13px;
+        color: var(--accent);
+        font-weight: 600;
+        margin-top: 5px;
+        display: block; /* Ensures it takes a new line */
+        margin-bottom: 8px; /* Added spacing below the time */
+    }
+
+
+    .pill, .btn {
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 14px;
+    }
+    
+    .pill {
+        background: rgba(255, 79, 163, 0.1); 
+        color: var(--accent) !important;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        border: 1px solid var(--accent);
+    }
+
+    .btn {
+        background: var(--accent);
+        color: var(--bg) !important;
+        margin-top: 15px;
+        transition: background 0.3s;
+    }
+    
+    .btn:hover {
+        background: var(--text);
+        color: var(--accent) !important;
+    }
+    
+    /* Interests list refinement */
+    #interests ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    #interests li {
+        background: var(--project-bg); /* Uses the slightly lighter dark background */
+        padding: 8px 15px;
+        border-radius: 4px;
+        font-weight: 500;
+        color: var(--muted);
+    }
+
+    footer {
+        min-height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 20px;
+        color: var(--muted);
+        font-size: 14px;
+        scroll-snap-align: start;
+    }
+    
+  </style>
+
+</head>
+<body>
+
+<section id="intro-section" class="full-screen-section">
+    <header>
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; flex-direction:column;">
+        <img src="jj.jpeg" 
+             style="width:70px;height:70px;border-radius:50%;object-fit:cover; border: 3px solid var(--accent);">
+        <div>
+          <h1>Shifa Muhammad</h1>
+          <p style="font-style: italic; color: var(--accent);">A Software Developer</p>
+          <p>📍Peshwar, Pakistan</p>
+        </div>
+      </div>
+
+      <div style="margin-top:30px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap; font-size:16px;">
+          <a href="#about" class="nav-link">👋 About</a>
+          <a href="#education" class="nav-link">🎓 Education</a>
+          <a href="#newskills" class="nav-link">🛠️ Skills</a>
+          <a href="#experience" class="nav-link">💼 Experience</a> 
+          <a href="#projects" class="nav-link">📁 Projects</a>
+          <a href="#interests" class="nav-link">⭐ Interests</a>
+          <a href="#contact" class="nav-link">📧 Contact</a>
+      </div>
+      
+      <div class="intro-buttons-container">
+        <a class="btn" href="https://www.linkedin.com/in/shifa-muhammad-0b2084393/">LinkedIn</a>
+        <a class="btn" href="https://github.com/shifa-a">GitHub</a>
+      </div>
+    </header>
+</section>
+
+<section id="about" class="full-screen-section">
+  <div class="content-box">
+    <h2>Hi, I'm Shifa — <span style="color: var(--accent);">Software Developer</span></h2>
+    <p style="color:var(--muted); margin-top: 15px;">
+      A 18 year old Software Engineering student currently studying at NUCES(FAST) Peshawar. I have expertise in C, Python and Java. I am aslo very good at problem solving and am a very coordinated person.
+    </p>
+    <a class="btn" href="#contact">Get in touch</a>
+  </div>
+</section>
+
+<section id="newskills" class="full-screen-section">
+  <div class="highlight-content">
+    <h3>🛠️ Core Skills & Technologies</h3>
+    <div style="margin-top:20px;">
+        <span class="pill">JavaScript (ES6+)</span>
+        <span class="pill">React.js</span>
+        <span class="pill">Node.js</span>
+        <span class="pill">Express.js</span>
+        <span class="pill">MongoDB</span>
+        <span class="pill">HTML & CSS</span>
+        <span class="pill">Git & GitHub</span>
+        <span class="pill">Responsive Design</span>
+        <span class="pill">UX/UI Principles</span>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="full-screen-section">
+  <div class="content-box">
+    <h3>💼 Experience</h3>
+    
+    <div class="experience-item">
+        <strong>Junior Web Development Intern</strong>
+        <p>Aperture Systems</p>
+        <span class="duration">June 2025 – August 2025</span>
+        <ul style="color: var(--muted); margin-top: 10px; padding-left: 20px; list-style-type: disc;">
+            <li>Contributed to the development of new UI components for a client portal using **React.js** and **Sass**.</li>
+            <li>Implemented **REST API** endpoints for data retrieval, resulting in faster load times for dashboard widgets.</li>
+            <li>Participated in daily stand-ups and utilized **Git** for collaborative development and version control.</li>
+        </ul>
+    </div>
+    
+    <div class="experience-item">
+        <strong>Freelance Web Designer</strong>
+        <p>Self-Employed</p>
+        <span class="duration">2024 – Present</span>
+        <ul style="color: var(--muted); margin-top: 10px; padding-left: 20px; list-style-type: disc;">
+            <li>Delivered 5+ functional, responsive websites for small businesses and personal blogs, enhancing their online presence.</li>
+            <li>Managed end-to-end development, from wireframing and design (HTML/CSS) to final deployment and maintenance.</li>
+            <li>Focused on **accessibility standards** and **SEO best practices** in all delivered projects.</li>
+        </ul>
+    </div>
+    
+  </div>
+</section>
+
+<section id="projects" class="full-screen-section">
+  <div class="content-box">
+    <h3>📁 Selected Projects</h3>
+    <div class="project"><strong>E-commerce Dashboard (MERN)</strong><p style="color: var(--muted);">A full-featured dashboard for managing products, orders, and users, built with React, Node.js, and MongoDB.</p></div>
+    <div class="project"><strong>Task Manager App (React)</strong><p style="color: var(--muted);">A lightweight to-do app with local storage, filters and smooth transitions, demonstrating front-end state management.</p></div>
+    <div class="project"><strong>Static Blog Generator (Next.js)</strong><p style="color: var(--muted);">A static blog template using Next.js for better performance and SEO, with markdown support.</p></div>
+  </div>
+</section>
+
+<section id="education" class="full-screen-section">
+  <div class="content-box">
+    <h3>🎓 Education</h3>
+    <div class="project"><strong>Bachelor's In Software Engineering</strong><p style="color: var(--muted);">National University of Computer and Emerging Sciences (NUCES FAST). 2025</p></div>
+    <div class="project"><strong>Intermediate (FSc Pre-Engineering)</strong><p style="color: var(--muted);">Hadaf College Peshawar. 2023-2025</p></div>
+    <div class="project"><strong>Matriculation (Science Group)</strong><p style="color: var(--muted);">University Model School. 2021-2023</p></div>
+  </div>
+</section>
+
+
+<section id="interests" class="full-screen-section">
+  <div class="highlight-content">
+    <h3>⭐ Interests & Hobbies</h3>
+    <ul>
+      <li>📚 Technical Reading (Distributed Systems & AI)</li>
+      <li>🕹️ Gaming & Game Development Concepts</li>
+      <li>☕ Exploring Cafés & Coffee Brewing</li>
+      <li>🎧 Music Production & Sound Design</li>
+      <li>🌍 Contributing to Open Source</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="full-screen-section">
+  <div class="highlight-content">
+    <h3>📧 Contact & Connect</h3>
+
+    <p style="color:var(--accent); font-weight:700; font-size: 18px;">shifaa.0567@gmail.com</p>
+    <p style="color:var(--accent); font-weight:700; font-size: 18px;">+923339234789</p>
+    </div>
+</section>
+
+<footer>
+Design & Developed by Shifa Muhammad • <span style="color:var(--muted)"></span>
+</footer>
+
+<script>
+  document.querySelector("footer span").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
